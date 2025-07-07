@@ -70,7 +70,7 @@ END IF;
 ```
 ---
 
-## 🔹 `Procedure: Place_order`
+## 🔹 Procedure: `Place_order`
 
 Validates stock availability, places an order, updates inventory, and logs the action.
 
