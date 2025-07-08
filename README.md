@@ -83,3 +83,78 @@ ELSE
     -- Log transaction in AuditLogs
 END IF;
 ```
+
+### 🔹 Trigger: `log_inventory`
+
+Creates an entry in the `auditlogs` table every time stock is updated in the `inventories` table.
+
+### 🔹 Trigger: `log_inventory`
+
+Creates an entry in the `auditlogs` table every time stock is updated in the `inventories` table.
+
+```sql
+CREATE TRIGGER log_inventory
+AFTER UPDATE ON inventories
+FOR EACH ROW
+BEGIN
+    -- Insert audit trail capturing old and new stock values
+    INSERT INTO auditlogs (...)
+    VALUES (...);
+END;
+```
+### 🔹 View: `product_quantity`
+
+Summarizes total available stock by product using a SQL aggregation view.
+
+```sql
+CREATE VIEW product_quantity AS
+SELECT product_id, 
+       SUM(...) AS total_stock
+FROM inventories
+GROUP BY product_id;
+```
+## 🧪 Testing and Transactions
+
+The test file (`SCM_SQL_test.sql`) includes transactional logic to validate system behavior across various edge cases.
+
+- Uses `START TRANSACTION`, `ROLLBACK`, and `COMMIT`
+- Includes visibility checks using `SELECT *` before and after actions
+
+---
+
+### ✅ Test Scenarios
+
+- ✔️ Valid order placement  
+- ❌ Order blocked due to insufficient stock  
+- 🔄 Inventory updates triggered automatically  
+- 🧾 Audit log created on stock changes
+
+---
+
+## 📈 Use Cases
+
+- 🎓 Educational demonstration of SQL-based supply chain design  
+- 🧮 Audit-proof enterprise workflow simulation  
+- 📊 Backend simulation for BI tools like Power BI or Tableau  
+  
+---
+
+## 🧠 Future Enhancements
+
+- ⏱️ Add stored functions for real-time KPI calculations  
+- 🐍 Integrate with Python for analytics and automation  
+- 📊 Visualize stock and lead times with Power BI or Tableau  
+- 🔐 Implement user roles and access control logic  
+- ⚠️ Introduce robust error handling inside stored procedures  
+
+---
+
+## 👨‍💼 Author
+
+**Guruprasad P**  
+Aspiring Data & Supply Chain Analyst  
+Passionate about analytics, and automation  
+
+📧 Email: [guruprem2002@gmail.com](mailto:guruprem2002@gmail.com)  
+🔗 LinkedIn: [linkedin.com/in/guruprasad2002](https://www.linkedin.com/in/guruprasad2002)
+
