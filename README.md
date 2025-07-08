@@ -55,7 +55,7 @@ sql-supplychain-erp/
 ## ⚙️ Core Functional Logic
 
 ### 🔹 Trigger: `auto_update_inventory`
-Automatically updates stock in the `inventories` table when a row is inserted into `productmovements`.
+Automatically updates stock in the `inventories` table when a row is inserted into `products_movement`.
 
 ```sql
 IF LOWER(NEW.movement_type) = 'received' THEN
